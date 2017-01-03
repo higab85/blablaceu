@@ -1,5 +1,7 @@
-// package Ventanas;
-package blablaceu.Ventanas;
+package Ventanas;
+// package blablaceu.Ventanas;
+import Usuarios.UsuarioCorriente;
+// import blablaceu.Usuarios.UsuarioCorriente;
 
 
 import java.awt.GridBagConstraints;
@@ -11,9 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
-// import Usuarios.UsuarioCorriente;
-import blablaceu.Usuarios.UsuarioCorriente;
 
 public class Registro extends JFrame  {
 	
@@ -82,6 +81,7 @@ public class Registro extends JFrame  {
 						 UsuarioCorriente usuarioC = new UsuarioCorriente(usuario.getText(), nombre.getText(), 
 								 telefono.getText(), direccion.getText(), password.getPassword().toString());
 						 Viajes viajes = new Viajes(usuarioC);
+						 System.out.println("we're in");
 					}
 					catch(Exception exc){
 //						JOptionPane.showMessageDialog(this,

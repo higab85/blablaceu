@@ -1,6 +1,7 @@
-// package Ventanas;
-package blablaceu.Ventanas;
-
+package Ventanas;
+// package blablaceu.Ventanas;
+import Ventanas.Registro;
+// import blablaceu.Ventanas.Registro;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,9 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
-// import Ventanas.Registro;
-import blablaceu.Ventanas.Registro;
 
 
 public class Inicio extends JFrame {

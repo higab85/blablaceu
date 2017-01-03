@@ -1,6 +1,5 @@
-// package Usuarios;
-
-package blablaceu.Usuarios;
+package Usuarios;
+// package blablaceu.Usuarios;
 
 public class Coche {
 	
