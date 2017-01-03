@@ -1,4 +1,5 @@
-package Ventanas;
+// package Ventanas;
+package blablaceu.Ventanas;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -10,8 +11,8 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import Usuarios.UsuarioCorriente;
-
+// import Usuarios.UsuarioCorriente;
+import blablaceu.Usuarios.UsuarioCorriente;
 
 public class Viajes extends JFrame{
 

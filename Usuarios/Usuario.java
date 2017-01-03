@@ -1,8 +1,10 @@
-package Usuarios;
+// package Usuarios;
+package blablaceu.Usuarios;
 
 import java.util.ArrayList;
 
-import Database.DatabaseWhisperer;
+// import Database.DatabaseWhisperer;
+import blablaceu.Database.DatabaseWhisperer;
 
 public class Usuario {
 	

@@ -1,4 +1,5 @@
-package Ventanas;
+// package Ventanas;
+package blablaceu.Ventanas;
 
 
 import java.awt.GridBagConstraints;
@@ -11,8 +12,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import Usuarios.UsuarioCorriente;
-
+// import Usuarios.UsuarioCorriente;
+import blablaceu.Usuarios.UsuarioCorriente;
 
 public class Registro extends JFrame  {
 	
