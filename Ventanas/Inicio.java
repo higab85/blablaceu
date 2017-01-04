@@ -58,6 +58,7 @@ public class Inicio extends JFrame {
 			}
 		});
 		// listens for login button press and launches login instance if pressed
+		// OBSERVER
 		login.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				UsuarioCorriente personaNueva = null;
