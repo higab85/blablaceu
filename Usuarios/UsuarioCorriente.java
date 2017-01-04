@@ -18,27 +18,20 @@ public class UsuarioCorriente extends Usuario {
 		this.nombre = nombre;
 		this.direccion = direccion;
 		verificarUsuario();
+		
 		db.registrarUsuario(this, password);
-	}
-	
-	private void verificarUsuario() throws Exception{
-		if( !this.nombre.matches("[a-zA-Z]+"))
-			throw new Exception("Nombre contiene valores no permitidos. Por favor use solamente letras para su nombre.");
-		if(!this.direccion.matches("[a-zA-Z0-9]+"))
-			throw new Exception("Solo aceptamos numeros y letras para direcciones");
 	}
 	
 	public void reservarPlaza(String matricula) throws SQLException{
 		db.reservarPlaza(this, matricula);
 	}
 	
-	public ArrayList<ArrayList<String>> verViajes(){
+	public ArrayList<ArrayList<String>> verViajes() throws SQLException{
 		
-		ArrayList<ArrayList<String>> placeholder = new ArrayList<ArrayList<String>>();
-		return placeholder;
+		return db.parsearViajes();
 	}
 	
-	public int contarViajesDisponibles(){
+	public int contarViajesDisponibles() throws SQLException{
 		
 		int viajes = 0;
 		

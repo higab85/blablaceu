@@ -16,10 +16,6 @@ public class Usuario {
 	DatabaseWhisperer db = null;
 	
 	ArrayList<Coche> coches = new ArrayList<Coche>();
-
-	private void actualizarInformacion(){
-		
-	}
 	
 	// log in
 	public Usuario(String user, String password) throws Exception{
@@ -32,6 +28,7 @@ public class Usuario {
 		}
 		this.usuario = user;
 		if(db.loginVerification(user, password)){
+			this.usuario = user;
 			actualizarInformacion();
 			try{
 				db = DatabaseWhisperer.getInstance();
@@ -43,6 +40,15 @@ public class Usuario {
 		}
 		else throw new Exception("Contrasenia incorrecta");
 	}
+	
+	private void actualizarInformacion() throws SQLException{
+		
+		ArrayList<String> datosPersonales = db.getDatosPersonales(this);
+		this.nombre = datosPersonales.get(0);
+		this.direccion = datosPersonales.get(1);
+		
+	}
+	
 	// registro
 	protected Usuario(){
 		try{
@@ -55,6 +61,13 @@ public class Usuario {
 	
 	public ArrayList<ArrayList<String>> verViajes() throws SQLException{
 		return db.parsearViajes();
+	}
+	
+	protected void verificarUsuario() throws Exception{
+		if( !this.nombre.matches("[a-zA-Z]+"))
+			throw new Exception("Nombre contiene valores no permitidos. Por favor use solamente letras para su nombre.");
+		if(!this.direccion.matches("[a-zA-Z0-9]+"))
+			throw new Exception("Solo aceptamos numeros y letras para direcciones");
 	}
 	
 	public String getUsuario() {

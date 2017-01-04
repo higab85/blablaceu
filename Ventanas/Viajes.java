@@ -21,19 +21,21 @@ public class Viajes extends JFrame{
 
 	public Viajes(Usuario usuario) throws SQLException {
 		System.out.println("hustle: " + usuario.getNombre());
-        final JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	
+        //final JFrame frame = new JFrame();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        
         //Configurar layout
         JPanel content = new JPanel();
         content.setLayout(new BorderLayout());
         
-        content.add(new JLabel("Bienvenido " + usuario.getUsuario()), BorderLayout.CENTER);
-        add(content);
+        JPanel decoracion = new JPanel();
+        decoracion.setLayout(new BorderLayout());
         
+        decoracion.add(new JLabel("Bienvenido " + usuario.getUsuario()), BorderLayout.CENTER);
         
         JPanel tablaViajes = new JPanel();
-        tablaViajes.setLayout(new GridLayout());
+        tablaViajes.setLayout(new GridLayout(5,1));
         
         
         for(ArrayList<String> viajeData : usuario.verViajes()){
@@ -41,8 +43,10 @@ public class Viajes extends JFrame{
             JPanel viaje = new JPanel();
             viaje.setLayout(new GridLayout(1,5));
             
-            for(String data : viajeData)
+            for(String data : viajeData){
+            	System.out.println(data);
             	viaje.add(new JLabel(data));
+            }
             
 			JButton seleccionar_plaza = new JButton("seleccionar");
 			
@@ -50,7 +54,7 @@ public class Viajes extends JFrame{
 			seleccionar_plaza.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					try{
-						 System.out.println("we're in");
+						 System.out.println("impementar metodo de reservar plaza");
 					}
 					catch(Exception exc){
 //						JOptionPane.showMessageDialog(this,
@@ -65,14 +69,17 @@ public class Viajes extends JFrame{
             tablaViajes.add(viaje);
         	
         }
-        add(tablaViajes);
+        content.add(tablaViajes, BorderLayout.CENTER);
+        content.add(decoracion, BorderLayout.NORTH);
         
+        add(content);
         
         setSize(1000, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setVisible(true);
+        setVisible(true); 
         
-        
+       
+      
 	}
 	
 	

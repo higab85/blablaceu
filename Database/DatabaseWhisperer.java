@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.SQLException;
 
+import Usuarios.Coche;
 import Usuarios.Usuario;
 import Usuarios.UsuarioCorriente;
 import Ventanas.Viajes;
@@ -143,5 +144,21 @@ public final class DatabaseWhisperer {
 		
 		return parseado;
 		
+	}
+
+	public ArrayList<String> getDatosPersonales(Usuario usuario) throws SQLException {
+		
+		ArrayList<String> parseado = new ArrayList<String>();
+		
+		Statement myStatement = db.createStatement();
+		ResultSet result = myStatement.executeQuery("SELECT * FROM usuarios WHERE nombre_usuario='"+ usuario.getUsuario() +"'");
+		
+		while(result.next()){
+			System.out.println("haka:" + result.getString("nombre"));
+			parseado.add(result.getString("nombre"));
+			parseado.add(result.getString("direccion"));
+		}
+			
+		return parseado;
 	}
 }

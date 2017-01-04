@@ -60,8 +60,10 @@ public class Inicio extends JFrame {
 		// listens for login button press and launches login instance if pressed
 		login.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				UsuarioCorriente personaNueva = null;
 				try {
-					UsuarioCorriente personaNueva = new UsuarioCorriente(usuario.getText(), password.getText());
+					personaNueva = new UsuarioCorriente(usuario.getText(), password.getText());
+					System.out.println("usumusu: " + personaNueva.getNombre());
 					Viajes viaje = new Viajes(personaNueva);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
