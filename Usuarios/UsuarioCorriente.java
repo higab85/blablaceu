@@ -1,4 +1,5 @@
 package Usuarios;
+import java.sql.SQLException;
 // package blablaceu.Usuarios;
 import java.util.ArrayList;
 
@@ -6,21 +7,29 @@ import java.util.ArrayList;
 public class UsuarioCorriente extends Usuario {
 
 	// log in
-	public UsuarioCorriente(String user) {
-		super(user);		
+	public UsuarioCorriente(String user, String password) throws Exception {
+		super(user, password);		
 	}
 	
 	// registro
-	public UsuarioCorriente(String user, String nombre, String telefono, String direccion, String password) throws Exception {
+	public UsuarioCorriente(String user, String nombre, String direccion, String password) throws Exception {
 		super();
 		this.usuario = user;
 		this.nombre = nombre;
-		this.telefono = telefono;
-		db.registrarUsuario(this);
+		this.direccion = direccion;
+		verificarUsuario();
+		db.registrarUsuario(this, password);
 	}
 	
-	public void reservarPlaza(Coche coche){
-		db.reservarPlaza(this, coche);
+	private void verificarUsuario() throws Exception{
+		if( !this.nombre.matches("[a-zA-Z]+"))
+			throw new Exception("Nombre contiene valores no permitidos. Por favor use solamente letras para su nombre.");
+		if(!this.direccion.matches("[a-zA-Z0-9]+"))
+			throw new Exception("Solo aceptamos numeros y letras para direcciones");
+	}
+	
+	public void reservarPlaza(String matricula) throws SQLException{
+		db.reservarPlaza(this, matricula);
 	}
 	
 	public ArrayList<ArrayList<String>> verViajes(){

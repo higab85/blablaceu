@@ -1,5 +1,6 @@
 package Ventanas;
 // package blablaceu.Ventanas;
+import Usuarios.UsuarioCorriente;
 import Ventanas.Registro;
 // import blablaceu.Ventanas.Registro;
 
@@ -31,8 +32,8 @@ public class Inicio extends JFrame {
         c.gridwidth = GridBagConstraints.REMAINDER; //end row
         c.weighty = 0.0;
 
-        JTextField usuario = new JTextField(10);
-        JPasswordField password = new JPasswordField(10);
+        final JTextField usuario = new JTextField(10);
+        final JPasswordField password = new JPasswordField(10);
         
         JPanel content1 = new JPanel();
         content1.setLayout(new GridBagLayout());
@@ -48,14 +49,35 @@ public class Inicio extends JFrame {
         content.add( content2, c);
         
 		JButton register = new JButton("Registrarse");
+		JButton login = new JButton("Login");
 		
-		// listens for button press and launches registro instance if pressed
+		// listens for registro button press and launches registro instance if pressed
 		register.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				Registro registro = new Registro();
 			}
 		});
-		content.add(register, c);
+		// listens for login button press and launches login instance if pressed
+		login.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				try {
+					UsuarioCorriente personaNueva = new UsuarioCorriente(usuario.getText(), password.getText());
+					Viajes viaje = new Viajes(personaNueva);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+        JPanel content3 = new JPanel();
+        content3.setLayout(new GridBagLayout());
+        
+        content3.add(login);
+        content3.add(register);
+
+        
+		content.add(content3, c);
 		
         
         add(content);

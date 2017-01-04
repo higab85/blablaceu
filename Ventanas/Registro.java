@@ -35,7 +35,6 @@ public class Registro extends JFrame  {
 	        final JTextField usuario = new JTextField(10);
 	        final JTextField nombre = new JTextField(10);
 	        final JTextField direccion = new JTextField(10);
-	        final JTextField telefono = new JTextField(10);
 	        final JPasswordField password = new JPasswordField(10);
 	        
 	        
@@ -53,13 +52,7 @@ public class Registro extends JFrame  {
 	        content3.setLayout(new GridBagLayout());
 	        content3.add(new JLabel("direccion"));
 	        content3.add(direccion);
-	        
-	        JPanel content4 = new JPanel();
-	        content4.setLayout(new GridBagLayout());
-	        content4.add(new JLabel("telefono"));
-	        content4.add(telefono);
-	        
-	        
+        
 	        JPanel content5 = new JPanel();
 	        content5.setLayout(new GridBagLayout());
 	        content5.add(new JLabel("contrasenia"));
@@ -69,7 +62,6 @@ public class Registro extends JFrame  {
 	        content.add( content1, c);
 	        content.add( content2, c);
 	        content.add( content3, c);
-	        content.add( content4, c);
 	        content.add( content5, c);
 	        
 			JButton register = new JButton("Registrarse");
@@ -78,16 +70,16 @@ public class Registro extends JFrame  {
 			register.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					try{
-						 UsuarioCorriente usuarioC = new UsuarioCorriente(usuario.getText(), nombre.getText(), 
-								 telefono.getText(), direccion.getText(), password.getPassword().toString());
-						 Viajes viajes = new Viajes(usuarioC);
-						 System.out.println("we're in");
+						UsuarioCorriente usuarioC = new UsuarioCorriente(usuario.getText(), nombre.getText(), 
+								direccion.getText(), password.getText().toString());
+		
+						Viajes viajes = new Viajes(usuarioC);
 					}
 					catch(Exception exc){
-//						JOptionPane.showMessageDialog(this,
-//								"El usuario escogido no esta disponible, por favor elija otro.", 
-//								"Warning",
-//								JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(frame,
+								exc, 
+								"Warning",
+								JOptionPane.WARNING_MESSAGE);
 					}
 				} 
 			});

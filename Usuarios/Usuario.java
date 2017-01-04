@@ -1,20 +1,19 @@
 package Usuarios;
 // package blablaceu.Usuarios;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Database.DatabaseWhisperer;
-// import blablaceu.Database.DatabaseWhisperer;
 
 public class Usuario {
 	
 	protected String usuario = new String();
 	protected String nombre = new String();
-	protected String telefono = new String();
 	protected String direccion = new String();
 	
 
-	DatabaseWhisperer db = DatabaseWhisperer.getInstance();
+	DatabaseWhisperer db = null;
 	
 	ArrayList<Coche> coches = new ArrayList<Coche>();
 
@@ -23,12 +22,40 @@ public class Usuario {
 	}
 	
 	// log in
-	public Usuario(String user){
-		usuario = user;
-		actualizarInformacion();
+	public Usuario(String user, String password) throws Exception{
+		try{
+			db = DatabaseWhisperer.getInstance();
+		}
+		catch(Exception e){
+			System.out.println(e);
+			throw e;
+		}
+		this.usuario = user;
+		if(db.loginVerification(user, password)){
+			actualizarInformacion();
+			try{
+				db = DatabaseWhisperer.getInstance();
+			}
+			catch(SQLException e){
+				System.out.println("SQLException: " + e);
+				throw e;
+			}
+		}
+		else throw new Exception("Contrasenia incorrecta");
 	}
 	// registro
-	protected Usuario(){}
+	protected Usuario(){
+		try{
+			db = DatabaseWhisperer.getInstance();
+		}
+		catch(SQLException e){
+			System.out.println("SQLException: " + e);
+		}
+	}
+	
+	public ArrayList<ArrayList<String>> verViajes() throws SQLException{
+		return db.parsearViajes();
+	}
 	
 	public String getUsuario() {
 		return usuario;
@@ -44,14 +71,6 @@ public class Usuario {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
 	}
 
 	public String getDireccion() {

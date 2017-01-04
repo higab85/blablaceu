@@ -1,6 +1,6 @@
 package Ventanas;
 // package blablaceu.Ventanas;
-import Usuarios.UsuarioCorriente;
+import Usuarios.Usuario;
 //import blablaceu.Usuarios.UsuarioCorriente;
 
 import java.awt.GridBagConstraints;
@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -18,8 +19,8 @@ import javax.swing.*;
 
 public class Viajes extends JFrame{
 
-	public Viajes(UsuarioCorriente usuario) {
-		
+	public Viajes(Usuario usuario) throws SQLException {
+		System.out.println("hustle: " + usuario.getNombre());
         final JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	
@@ -27,7 +28,7 @@ public class Viajes extends JFrame{
         JPanel content = new JPanel();
         content.setLayout(new BorderLayout());
         
-        content.add(new JLabel("Bienvenido " + usuario.getUsuario()), BorderLayout.NORTH);
+        content.add(new JLabel("Bienvenido " + usuario.getUsuario()), BorderLayout.CENTER);
         add(content);
         
         
