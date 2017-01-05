@@ -71,13 +71,13 @@ public final class DatabaseWhisperer {
 	
 	
 	// reserva una plaza en el coche
-	public static void reservarPlaza(Usuario usuario, String matricula) throws SQLException{
+	public void reservarPlaza(Usuario usuario, String info_coche) throws SQLException{
 	
 		try{
 			
 			Statement myStatement =  db.createStatement();
 			myStatement.executeUpdate("update usuarios SET matricula_coche_en_el_que_viajo= '" +
-			matricula + "' WHERE nombre_usuario='" + usuario.getUsuario() + "'");
+			info_coche + "' WHERE nombre_usuario='" + usuario.getUsuario() + "';");
 		}
 		catch (SQLException ex) {
 		    System.out.println("Error de SQL: " + ex);
@@ -173,4 +173,16 @@ public final class DatabaseWhisperer {
 			
 		return parseado;
 	}
+        
+        
+
+
+
+
+
+
+
+
+
+
 }

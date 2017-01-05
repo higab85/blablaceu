@@ -1,5 +1,6 @@
 package Ventanas;
 // package blablaceu.Ventanas;
+import Database.DatabaseWhisperer;
 import Usuarios.Coche;
 import Usuarios.Usuario;
 //import blablaceu.Usuarios.UsuarioCorriente;
@@ -83,10 +84,20 @@ public class Viajes extends JFrame{
 //								direccion.getText(), password.getText().toString());
 //		
 //						Viajes viajes = new Viajes(usuarioC);
-                                                Object matricula_coche = bx.getSelectedItem();
-                                                
+                                              Object info_coche = bx.getSelectedItem();
+                                             String string = info_coche.toString();
                                               //  Coche cr = (Coche)matricula_coche;
-                                                System.out.println(matricula_coche);
+                                                System.out.println(string);
+                                                try{
+                                                    DatabaseWhisperer dw = DatabaseWhisperer.getInstance();
+                                                    dw.reservarPlaza(usuario,string);
+                                                
+                                                }catch(SQLException ex){
+                                                    System.out.println("Error de SQL: " + ex);
+                                                }
+                                                
+                                                
+                                               
 					}
 				
 				
