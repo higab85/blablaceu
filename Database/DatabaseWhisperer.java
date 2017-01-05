@@ -12,6 +12,7 @@ import Usuarios.Coche;
 import Usuarios.Usuario;
 import Usuarios.UsuarioCorriente;
 import Ventanas.Viajes;
+import javax.swing.JOptionPane;
 
 public final class DatabaseWhisperer {
 
@@ -21,14 +22,24 @@ public final class DatabaseWhisperer {
 	
 	private DatabaseWhisperer() throws SQLException{
 		try{
+                    Class.forName("org.sqlite.JDBC");
+			db = DriverManager.getConnection("jdbc:sqlite:./blablaceu2.0.db");
+                        
+                        	} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();}
+        }/* GABRI ESTO ES LO DE TU PARTE , CUANDO VAYAS A USARLA EN TU ORDENA, COMENTA LO MIO Y USA LO QUE TE HE COMENTADO YO ::::
+                      
+                    
 		    Class.forName("org.sqlite.JDBC");
 		    String sqliteURL = "jdbc:sqlite:blablaceu2.0.db";
 		    db = DriverManager.getConnection(sqliteURL, "usuario", "pass");
+                    System.out.println("conectado");
 		}
-		catch (ClassNotFoundException ex) {
-		    System.out.println("Error cargando driver: " + ex);
+		catch (Exception e) {
+		    System.out.println("Error cargando driver: " + e);
 		}
-	};
+	};*/
 	
 	// Singleton
 	public static DatabaseWhisperer getInstance() throws SQLException{
@@ -48,6 +59,7 @@ public final class DatabaseWhisperer {
 		}
 		catch(SQLException e){
 			throw new Exception("Usuario no existe");
+                        
 		}
 		
 		if(result.getString("passwd").equals(pass)){

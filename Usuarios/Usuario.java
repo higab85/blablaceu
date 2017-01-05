@@ -36,6 +36,7 @@ public class Usuario {
 			catch(SQLException e){
 				System.out.println("SQLException: " + e);
 				throw e;
+//                                JOptionPane.showMessageDialog(null,"El usuario no existe!!!", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else throw new Exception("Contrasenia incorrecta");
@@ -101,4 +102,7 @@ public class Usuario {
 	public void setCoches(ArrayList<Coche> coches) {
 		this.coches = coches;
 	}
+//        public void setMatriculaCocheEnQueViajo (String matricula){
+//                this.matricula
+//        }
 }
