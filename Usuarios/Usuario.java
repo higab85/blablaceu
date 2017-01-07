@@ -63,6 +63,7 @@ public class Usuario {
 	public ArrayList<ArrayList<String>> verViajes() throws SQLException{
 		return db.parsearViajes();
 	}
+        
 	
 	protected void verificarUsuario() throws Exception{
 		if( !this.nombre.matches("[a-zA-Z]+"))

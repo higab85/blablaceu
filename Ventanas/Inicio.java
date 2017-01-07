@@ -1,5 +1,6 @@
 package Ventanas;
 // package blablaceu.Ventanas;
+import Database.DatabaseWhisperer;
 import Usuarios.UsuarioCorriente;
 import Ventanas.Registro;
 // import blablaceu.Ventanas.Registro;
@@ -11,6 +12,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.*;
 
@@ -90,7 +92,9 @@ public class Inicio extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Inicio aplicacion = new Inicio();
+        //DatabaseWhisperer s = DatabaseWhisperer.getInstance();
+       // s.mostrarInfoRutas();
     }
 }

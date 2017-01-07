@@ -21,7 +21,7 @@ import javax.swing.*;
 
 
 public class Viajes extends JFrame{
-
+    private   JLabel infoR;
 	public Viajes(Usuario usuario) throws SQLException {
 		super("SELECCIÓN DE VIAJES");
                 System.out.println("hustle: " + usuario.getNombre());
@@ -41,6 +41,22 @@ public class Viajes extends JFrame{
         
         JPanel tablaViajes = new JPanel();
         tablaViajes.setLayout(new GridLayout(5,1));
+        
+        JPanel info_rutas  = new JPanel();
+        info_rutas.setLayout(new GridLayout(5,1));
+        
+        DatabaseWhisperer dw = DatabaseWhisperer.getInstance();
+         ArrayList infoRuta =  dw.mostrarInfoRutas();
+         Iterator it = infoRuta.iterator();
+         
+         
+         while(it.hasNext()){
+            String x = (String)it.next();
+            infoR = new JLabel(x);
+         }
+         
+         
+        
         
         JComboBox bx = new JComboBox();
         
@@ -72,6 +88,7 @@ public class Viajes extends JFrame{
             tablaViajes.add(viaje);
             tablaViajes.add(bx);
             tablaViajes.add(seleccionar_plaza);
+            
         	
         }
       
@@ -105,6 +122,8 @@ public class Viajes extends JFrame{
         content.add(tablaViajes, BorderLayout.CENTER);
         content.add(decoracion, BorderLayout.NORTH);
         
+       content.add(infoR, BorderLayout.WEST);
+
         
         add(content);
         

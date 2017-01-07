@@ -12,6 +12,7 @@ import Usuarios.Coche;
 import Usuarios.Usuario;
 import Usuarios.UsuarioCorriente;
 import Ventanas.Viajes;
+import javax.naming.spi.DirStateFactory.Result;
 import javax.swing.JOptionPane;
 
 public final class DatabaseWhisperer {
@@ -83,7 +84,53 @@ public final class DatabaseWhisperer {
 		    System.out.println("Error de SQL: " + ex);
 		}
 	}
-	
+//        
+//        // muestra la tabla de información de las rutas y sus paradas
+//	public   mostrarInfoRutas() throws SQLException{
+//                
+//                
+//		try{
+//			
+//			Statement myStatement =  db.createStatement();
+//			myStatement.executeQuery("select * from info_rutas" );
+//			//info_rutas + "' WHERE nombre_usuario='" + usuario.getUsuario() + "';");
+//		}
+//		catch (SQLException ex) {
+//		    System.out.println("Error de SQL: " + ex);
+//		}
+//                return ;
+//                
+//	}
+	public ArrayList mostrarInfoRutas() throws SQLException{
+		
+		ArrayList<String> infoRuta = new ArrayList<String>();
+
+                         StringBuilder sb = new StringBuilder();
+		try{
+			
+			Statement myStatement =  db.createStatement();			
+                        ResultSet rs = myStatement.executeQuery("select * from info_rutas" );
+                        while(rs.next()){
+                        String s1 = rs.getString("nombre_ruta");
+                         String s2 = rs.getString("nombre_paradas");
+                         
+                         sb.append("<html> nombre de la ruta..... " + s1 + " | " + s2 + "<br>" + "<br> <br>");
+                         infoRuta.add(sb.toString());
+                         
+                        }
+                    	
+
+			
+		}
+		catch (SQLException ex) {
+		    System.out.println("Error de SQL: " + ex);
+		}
+		
+		return infoRuta; 
+		
+	}
+        
+        
 	// registra un usuario nuevo en la base de datos a menos que el nombre de usuario
 	// ya haya sido escogido. 
 	public static void registrarUsuario(Usuario usuario, String password) throws Exception{
