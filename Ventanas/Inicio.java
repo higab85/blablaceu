@@ -59,10 +59,13 @@ public class Inicio extends JFrame {
                 Usuario personaNueva = null;
                 try {
                     personaNueva = new Usuario(usuario.getText(), password.getText());
-                    System.out.println("usumusu: " + personaNueva.getNombre());
                     Viajes viaje = new Viajes(personaNueva);
                 } catch (Exception e1) {
                     e1.printStackTrace();
+                    JOptionPane.showMessageDialog(frame,
+                                e1, 
+                                "Warning",
+                                JOptionPane.WARNING_MESSAGE);
                 }
             }
         });

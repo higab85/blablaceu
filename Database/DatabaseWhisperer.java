@@ -20,7 +20,6 @@ public final class DatabaseWhisperer {
                 db = DriverManager.getConnection("jdbc:sqlite:./blablaceu2.0.db");
 
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
     }
@@ -28,7 +27,7 @@ public final class DatabaseWhisperer {
     // Singleton
     public static DatabaseWhisperer getInstance() throws SQLException{
             if(dbw == null)
-                    dbw = new DatabaseWhisperer();
+                dbw = new DatabaseWhisperer();
             return dbw;
     }
 
@@ -39,10 +38,12 @@ public final class DatabaseWhisperer {
             try{
                 System.out.println(user);
                 result = myStatement.executeQuery("SELECT * FROM usuarios WHERE nombre_usuario='" + user + "'");
-
+                if(!result.next()){
+                    throw new Exception("Usuario no existe");
+                }
             }
             catch(SQLException e){
-                throw new Exception("Usuario no existe");
+                e.printStackTrace();
 
             }
 
