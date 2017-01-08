@@ -69,20 +69,21 @@ public final class DatabaseWhisperer {
             }
     }
 
-    public ArrayList mostrarInfoRutas() throws SQLException{
+    public ArrayList<String> mostrarInfoRutas() throws SQLException{
 
             ArrayList<String> infoRuta = new ArrayList<String>();
 
-                StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             try{
 
                 Statement myStatement =  db.createStatement();			
                 ResultSet rs = myStatement.executeQuery("select * from info_rutas" );
                 while(rs.next()){
+                    
                     String s1 = rs.getString("nombre_ruta");
                     String s2 = rs.getString("nombre_paradas");
 
-                    sb.append("<html> nombre de la ruta..... " + s1 + " | " + s2 + "<br>" + "<br> <br>");
+                    sb.append("<html> LA RUTA: '" + s1 + "' PARA EN: " + s2 + "<br>" + "<br> <br>");
                     infoRuta.add(sb.toString());
                 }
             }
@@ -184,10 +185,63 @@ public final class DatabaseWhisperer {
 
             return parseado;
     }
+    
+    public ArrayList<String> getPilotos() throws SQLException{
+        
+        ArrayList<String> pilotos = new ArrayList<String>();
+        
+        Statement myStatement = db.createStatement();
+        ResultSet result = myStatement.executeQuery("SELECT nombre_usuario FROM coches");
+        
+        while(result.next())
+            pilotos.add(result.getString("nombre_usuario"));
+         
+        return pilotos;
+    }
+
+    public ArrayList<String> conduceA(String usuario) throws SQLException {
+        
+        ArrayList<String> usuarios = new ArrayList<String>();
+        
+        Statement myStatement = db.createStatement();
+        ResultSet result = myStatement.executeQuery("SELECT * FROM coches WHERE "
+                + "nombre_usuario='" + usuario + "'");
+        
+        String miMatricula = result.getString("matricula");
+        
+        result = myStatement.executeQuery("SELECT * FROM usuarios "
+                + "WHERE matricula_coche_en_el_que_viajo='"+ miMatricula +"'");
+        
+        while(result.next()){
+            usuarios.add(result.getString("nombre"));
+        }
+        return usuarios;
+    }
 
 
 
-
+//        public ArrayList<ArrayList<String>> conduceA() throws SQLException {
+//        
+//        ArrayList<String> matriculas = new ArrayList<String>();
+//        ArrayList<ArrayList<String>> usuariosEnMatricula = new ArrayList<ArrayList<String>>();
+//        
+//        Statement myStatement = db.createStatement();
+//        ResultSet result = myStatement.executeQuery("SELECT * FROM coches");
+//        while(result.next())
+//            matriculas.add(result.getString("matricula"));
+//        
+//        for(String matricula : matriculas){
+//            result = myStatement.executeQuery("SELECT nombre FROM usuarios "
+//                    + "WHERE matricula_coche_en_el_que_viajo='"+ matricula +"'");
+//            
+//            ArrayList<String> usuarios = new ArrayList<String>();
+//            while(result.next())
+//                usuarios.add(result.getString("nombre"));
+//            usuariosEnMatricula.add(usuarios);
+//            
+//        }
+//        return usuariosEnMatricula;
+//    }
 
 
 

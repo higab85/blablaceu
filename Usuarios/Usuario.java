@@ -75,6 +75,70 @@ public class Usuario {
             throw new Exception("Solo aceptamos numeros y letras para direcciones");
     }
 
+    
+    
+    public void reservarPlaza(String coche) throws SQLException{
+        db.reservarPlaza(this, coche);
+    }
+    
+    public ArrayList<String> mostrarInfoRutas() throws SQLException{
+        return db.mostrarInfoRutas();
+    }
+    
+    public String EspilotoString() throws SQLException{
+        return conduceAString(this.usuario);
+    }
+    
+    public String conduceAString(String piloto) throws SQLException{
+        StringBuilder usuarios = new StringBuilder();
+        
+        for(String usuario : db.conduceA(piloto))
+            usuarios.append(usuario + ", ");
+//        usuarios.delete(-2, -1);
+        usuarios.append(".");
+        
+        String usuariosString = usuarios.toString();
+        
+        return usuariosString;   
+    }
+    
+    // primer elemento del Array sera el nombre de piloto, el resto seran los
+    // pasajeros
+    public ArrayList<String> mostrarPilotos() throws SQLException{
+        
+        ArrayList<String> pilotos = new ArrayList<String>();
+        ArrayList<String> matriculas = new ArrayList<String>();
+        ArrayList<String> quienConduceAQuien = new ArrayList<String>();
+        
+        for(String piloto : db.getPilotos())
+            pilotos.add(piloto);
+        
+            
+        for(String piloto : pilotos){
+            StringBuilder sb = new StringBuilder();
+            sb.append(piloto+ " conduce a ");
+            sb.append(conduceAString(piloto));
+            quienConduceAQuien.add(sb.toString());
+        }
+        
+        return quienConduceAQuien;
+    }
+    
+//        public ArrayList<String> conduceAstring() throws SQLException{
+//        
+//        StringBuilder usuarios = new StringBuilder();
+//        for(ArrayList<String> matricula : db.conduceA())
+//            for(String usuario : matricula)
+//                usuarios.append(usuario + ", ");
+//        usuarios.delete(-2, -1);
+//        usuarios.append(".");
+//        
+//        return db.conduceA();
+//    }
+    
+    
+    
+    
     public String getUsuario() {
         return usuario;
     }
