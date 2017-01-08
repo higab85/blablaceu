@@ -1,5 +1,4 @@
 package Database;
-// package blablaceu.Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,12 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.SQLException;
 
-import Usuarios.Coche;
 import Usuarios.Usuario;
-import Usuarios.UsuarioCorriente;
-import Ventanas.Viajes;
-import javax.naming.spi.DirStateFactory.Result;
-import javax.swing.JOptionPane;
 
 public final class DatabaseWhisperer {
 
@@ -29,18 +23,7 @@ public final class DatabaseWhisperer {
                         	} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();}
-        }/* GABRI ESTO ES LO DE TU PARTE , CUANDO VAYAS A USARLA EN TU ORDENA, COMENTA LO MIO Y USA LO QUE TE HE COMENTADO YO ::::
-                      
-                    
-		    Class.forName("org.sqlite.JDBC");
-		    String sqliteURL = "jdbc:sqlite:blablaceu2.0.db";
-		    db = DriverManager.getConnection(sqliteURL, "usuario", "pass");
-                    System.out.println("conectado");
-		}
-		catch (Exception e) {
-		    System.out.println("Error cargando driver: " + e);
-		}
-	};*/
+        }
 	
 	// Singleton
 	public static DatabaseWhisperer getInstance() throws SQLException{
@@ -84,23 +67,7 @@ public final class DatabaseWhisperer {
 		    System.out.println("Error de SQL: " + ex);
 		}
 	}
-//        
-//        // muestra la tabla de información de las rutas y sus paradas
-//	public   mostrarInfoRutas() throws SQLException{
-//                
-//                
-//		try{
-//			
-//			Statement myStatement =  db.createStatement();
-//			myStatement.executeQuery("select * from info_rutas" );
-//			//info_rutas + "' WHERE nombre_usuario='" + usuario.getUsuario() + "';");
-//		}
-//		catch (SQLException ex) {
-//		    System.out.println("Error de SQL: " + ex);
-//		}
-//                return ;
-//                
-//	}
+
 	public ArrayList mostrarInfoRutas() throws SQLException{
 		
 		ArrayList<String> infoRuta = new ArrayList<String>();

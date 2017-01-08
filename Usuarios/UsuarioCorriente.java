@@ -1,6 +1,5 @@
 package Usuarios;
 import java.sql.SQLException;
-// package blablaceu.Usuarios;
 import java.util.ArrayList;
 
 

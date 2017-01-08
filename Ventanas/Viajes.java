@@ -1,15 +1,8 @@
 package Ventanas;
-// package blablaceu.Ventanas;
-import Database.DatabaseWhisperer;
-import Usuarios.Coche;
-import Usuarios.Usuario;
-//import blablaceu.Usuarios.UsuarioCorriente;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import Database.DatabaseWhisperer;
+import Usuarios.Usuario;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,9 +17,7 @@ public class Viajes extends JFrame{
     private   JLabel infoR;
 	public Viajes(Usuario usuario) throws SQLException {
 		super("SELECCIÓN DE VIAJES");
-                System.out.println("hustle: " + usuario.getNombre());
                 
-        //final JFrame frame = new JFrame();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         
@@ -63,28 +54,13 @@ public class Viajes extends JFrame{
         JButton seleccionar_plaza = new JButton("seleccionar");
              
       for(ArrayList<String> viajeData : usuario.verViajes()){
-       // System.out.println("hello "+ viajeData);
          Object elem = viajeData;
          
           bx.addItem(elem);
           
             JPanel viaje = new JPanel();
             viaje.setLayout(new GridLayout(1,5));
-            
-          /*  for(String data : viajeData){
-            	System.out.println(data);
-                bx.add(new JLabel(data));
-            	//viaje.add(new JLabel(data));
-            }*/
-          
-        
-            
-			
-			
-			// listens for button press and launches registro instance if pressed
-			
-            
-          //  viaje.add(seleccionar_plaza);
+         
             tablaViajes.add(viaje);
             tablaViajes.add(bx);
             tablaViajes.add(seleccionar_plaza);
@@ -96,14 +72,8 @@ public class Viajes extends JFrame{
       seleccionar_plaza.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					
-						// System.out.println("implementar metodo de reservar plaza");
-//                                                UsuarioCorriente usuarioC = new UsuarioCorriente(usuario.getText(), nombre.getText(), 
-//								direccion.getText(), password.getText().toString());
-//		
-//						Viajes viajes = new Viajes(usuarioC);
-                                              Object info_coche = bx.getSelectedItem();
+			                      Object info_coche = bx.getSelectedItem();
                                              String string = info_coche.toString();
-                                              //  Coche cr = (Coche)matricula_coche;
                                                 System.out.println(string);
                                                 try{
                                                     DatabaseWhisperer dw = DatabaseWhisperer.getInstance();

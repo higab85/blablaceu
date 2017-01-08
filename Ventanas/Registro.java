@@ -1,14 +1,9 @@
 package Ventanas;
-// package blablaceu.Ventanas;
 import Usuarios.UsuarioCorriente;
-// import blablaceu.Usuarios.UsuarioCorriente;
 
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

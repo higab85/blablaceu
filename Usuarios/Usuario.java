@@ -1,5 +1,4 @@
 package Usuarios;
-// package blablaceu.Usuarios;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,9 +14,7 @@ public class Usuario {
 
 	DatabaseWhisperer db = null;
 	
-	ArrayList<Coche> coches = new ArrayList<Coche>();
-	
-	// log in
+        // log in
 	public Usuario(String user, String password) throws Exception{
 		try{
 			db = DatabaseWhisperer.getInstance();
@@ -36,7 +33,6 @@ public class Usuario {
 			catch(SQLException e){
 				System.out.println("SQLException: " + e);
 				throw e;
-//                                JOptionPane.showMessageDialog(null,"El usuario no existe!!!", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else throw new Exception("Contrasenia incorrecta");
@@ -96,14 +92,5 @@ public class Usuario {
 		this.direccion = direccion;
 	}
 
-	public ArrayList<Coche> getCoches() {
-		return coches;
-	}
-
-	public void setCoches(ArrayList<Coche> coches) {
-		this.coches = coches;
-	}
-//        public void setMatriculaCocheEnQueViajo (String matricula){
-//                this.matricula
-//        }
+        
 }
