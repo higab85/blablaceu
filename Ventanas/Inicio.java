@@ -1,5 +1,5 @@
 package Ventanas;
-import Usuarios.UsuarioCorriente;
+import Usuarios.Usuario;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -43,30 +43,29 @@ public class Inicio extends JFrame {
         content.add( content1, c);
         content.add( content2, c);
         
-		JButton register = new JButton("Registrarse");
-		JButton login = new JButton("Login");
-		
-		// listens for registro button press and launches registro instance if pressed
-		register.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				Registro registro = new Registro();
-			}
-		});
-		// listens for login button press and launches login instance if pressed
-		// OBSERVER
-		login.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				UsuarioCorriente personaNueva = null;
-				try {
-					personaNueva = new UsuarioCorriente(usuario.getText(), password.getText());
-					System.out.println("usumusu: " + personaNueva.getNombre());
-					Viajes viaje = new Viajes(personaNueva);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
+        JButton register = new JButton("Registrarse");
+        JButton login = new JButton("Login");
+
+        // listens for registro button press and launches registro instance if pressed
+        register.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                Registro registro = new Registro();
+            }
+        });
+        // listens for login button press and launches login instance if pressed
+        // OBSERVER
+        login.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                Usuario personaNueva = null;
+                try {
+                    personaNueva = new Usuario(usuario.getText(), password.getText());
+                    System.out.println("usumusu: " + personaNueva.getNombre());
+                    Viajes viaje = new Viajes(personaNueva);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
 		
         JPanel content3 = new JPanel();
         content3.setLayout(new GridBagLayout());
@@ -75,7 +74,7 @@ public class Inicio extends JFrame {
         content3.add(register);
 
         
-		content.add(content3, c);
+	content.add(content3, c);
 		
         
         add(content);
